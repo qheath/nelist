@@ -1,0 +1,8 @@
+(jbuild_version 1)
+
+(library
+ ((name nEList)
+  (public_name nelist)
+  (synopsis "non-empty lists")
+  (modules (NEList))
+  (flags (:standard -warn-error A))))

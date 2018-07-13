@@ -1,0 +1,7 @@
+(jbuild_version 1)
+
+(alias
+ ((name runtest)
+  (deps (src/test.bc))
+  (action
+   (run ${<}))))
