@@ -3,11 +3,9 @@ type 'a t
 
 (** {6 Creation} *)
 
-val make : 'a -> 'a t
-
 val init : int -> (int -> 'a) -> 'a t
 
-val push : 'a -> 'a t -> 'a t
+val push : 'a -> 'a t option -> 'a t
 
 val of_list : 'a list -> 'a t option
 
@@ -37,7 +35,7 @@ val iter :
   ('a -> 'a -> unit) ->
   'a t -> unit
 
-val pop : 'a t -> ('a * 'a t) option
+val pop : 'a t -> 'a * 'a t option
 
 val to_list : 'a t -> 'a list
 

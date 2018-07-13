@@ -2,16 +2,15 @@ type 'a t = 'a * 'a list
 
 (* Creation *)
 
-let make x = x,[]
-
 let init n f =
   if n<1 then raise (Invalid_argument "NEList.init") else
     let h = f 0 in
     let t = List.init (n-1) (fun i -> f (i+1)) in
     h,t
 
-let push h0 (h1,t) =
-  h0,h1::t
+let push h0 = function
+  | Some (h1,t) -> h0,h1::t
+  | None -> h0,[]
 
 let of_list = function
   | [] -> None
@@ -69,8 +68,8 @@ let iter f g nel =
   ()
 
 let pop = function
-  | _,[] -> None
-  | h1,h2::t -> Some (h1,(h2,t))
+  | h,[] -> h,None
+  | h1,h2::t -> h1,Some (h2,t)
 
 let to_list (h,t) = h::t
 

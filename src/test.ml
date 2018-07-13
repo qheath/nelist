@@ -1,7 +1,7 @@
 let print_short nel =
   match NEList.pop nel with
-  | None -> ()
-  | Some (h0,nel0) ->
+  | _,None -> ()
+  | h0,Some nel0 ->
     let h1,hn = NEList.ends nel0 in
     Printf.printf " = [ %d ; %d ; ... ; %d ]" h0 h1 hn
 
@@ -17,9 +17,9 @@ let print name nel =
   Printf.printf "\n"
 
 let () =
-  let l0 = NEList.make 0 in
+  let l0 = NEList.push 0 None in
   print "l0" l0 ;
-  let l1 = NEList.push 1 l0 in
+  let l1 = NEList.push 1 (Some l0) in
   print "l1" l1 ;
   let l2 = NEList.init 5 (fun i -> i+5) in
   print "l2" l2 ;
@@ -32,9 +32,7 @@ let () =
 
   let l4 =
     NEList.flatten @@
-    NEList.push l1 @@
-    NEList.push l2 @@
-    NEList.make l3
+    NEList.push l1 (Some (NEList.push l2 (Some (NEList.push l3 None))))
   in
   print "flattened" l4 ;
 
