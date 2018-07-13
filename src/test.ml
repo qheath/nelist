@@ -30,10 +30,7 @@ let () =
   in
   print "l3" l3 ;
 
-  let l4 =
-    NEList.flatten @@
-    NEList.push l1 (Some (NEList.push l2 (Some (NEList.push l3 None))))
-  in
+  let l4 = NEList.flatten @@ NEList.push l1 (NEList.of_list [l2;l3]) in
   print "flattened" l4 ;
 
   let l5 = NEList.rev_map (fun i -> i+10) l4 in

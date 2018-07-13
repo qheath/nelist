@@ -46,11 +46,13 @@ let map f nel =
 
 let flatten =
   let rec aux (hh0,ht0) = function
-    | (hh1::ht1),t -> aux (hh1,hh0::ht0) (ht1,t)
-    | [],((hh1,ht1)::t) -> aux (hh1,hh0::ht0) (ht1,t)
-    | [],[] -> rev (hh0,ht0)
+    | (hh1,ht1),[] -> rev_append (hh0::ht0) (hh1,ht1)
+    | (hh1,ht1),(h::t) -> aux (rev_append (hh1::ht1) (hh0,ht0)) (h,t)
   in
-  fun ((hh,ht),t) -> aux (hh,[]) (ht,t)
+  function
+  | h,[] -> h
+  | h0,(h1::t1) -> aux (rev h0) (h1,t1)
+
 
 (* Destruction *)
 
