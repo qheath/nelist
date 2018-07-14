@@ -7,6 +7,8 @@ val init : int -> (int -> 'a) -> 'a t
 
 val push : 'a -> 'a t option -> 'a t
 
+val push_back : 'a t option -> 'a -> 'a t
+
 val of_list : 'a list -> 'a t option
 
 (** {6 Manipulation/transformation} *)
@@ -36,6 +38,8 @@ val iter :
   'a t -> unit
 
 val pop : 'a t -> 'a * 'a t option
+
+val pop_back : 'a t -> 'a t option * 'a
 
 val to_list : 'a t -> 'a list
 
