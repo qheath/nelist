@@ -2,8 +2,10 @@ let print_short nel =
   match NEList.pop nel with
   | _,None -> ()
   | h0,Some nel0 ->
-    let h1,hn = NEList.ends nel0 in
-    Printf.printf " = [ %d ; %d ; ... ; %d ]" h0 h1 hn
+    let h1,hn = NEList.ends nel0
+    and hm = NEList.binop min nel
+    and hM = NEList.binop max nel in
+    Printf.printf " = %d <= [ %d ; %d ; ... ; %d ] <= %d" hm h0 h1 hn hM
 
 let print name nel =
   Printf.printf "%s(%d)" name (NEList.length nel) ;

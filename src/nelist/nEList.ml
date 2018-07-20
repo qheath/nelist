@@ -38,6 +38,11 @@ let flatten =
   | h,[] -> h
   | h0,(h1::t1) -> aux (rev h0) (h1,t1)
 
+let binop op =
+  let f x = function None -> x | Some y -> y
+  and g x y = Some (op x y) in
+  fun atoms -> fold f g atoms None
+
 
 (* Creation *)
 
