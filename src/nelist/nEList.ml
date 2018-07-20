@@ -11,16 +11,17 @@ let rev_append =
   fun l (h,t) -> aux (h,t) l
 
 let fold f g =
-  let rec aux accum = function
+  let rec aux (accum,h0) = function
     | [] -> accum
-    | h1::t1 -> aux (f h1 (g h1 accum)) t1
+    | h1::t1 ->
+      aux (f h1 (g h0 h1 accum),h1) t1
   in
-  fun (h,t) seed -> aux (f h seed) t
+  fun (h,t) seed -> aux (f h seed,h) t
 
 let rev_map f nel =
   fold
     (fun h accum -> f h,accum)
-    (fun _ (h,t) -> h::t)
+    (fun _ _ (h,t) -> h::t)
     nel []
 
 let rev (h,t) =
@@ -39,8 +40,8 @@ let flatten =
   | h0,(h1::t1) -> aux (rev h0) (h1,t1)
 
 let binop op =
-  let f x = function None -> x | Some y -> y
-  and g x y = Some (op x y) in
+  let f y = function None -> y | Some x -> op x y
+  and g _ _ z = Some z in
   fun atoms -> fold f g atoms None
 
 let find test (h,t) =
@@ -78,13 +79,9 @@ let ends (h,t) =
   h,h'
 
 let iter f g nel =
-  let _ =
-    fold
-      (fun h () -> f h ; h)
-      (fun h1 h0 -> g h0 h1)
-      nel ()
-  in
-  ()
+  let f h () = f h
+  and g h0 h1 () = g h0 h1 in
+  fold f g nel ()
 
 let pop = function
   | h,[] -> h,None

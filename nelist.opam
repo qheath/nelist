@@ -1,5 +1,5 @@
 opam-version: "2.0"
-version: "0.6"
+version: "0.7"
 maintainer: "Quentin Heath <12143333+qheath@users.noreply.github.com>"
 authors: "Quentin Heath <12143333+qheath@users.noreply.github.com>"
 license: "GPL-3"

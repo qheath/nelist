@@ -17,7 +17,7 @@ val rev_append : 'a list -> 'a t -> 'a t
 
 val fold :
   ('a -> 'start -> 'finish) ->
-  ('a -> 'finish -> 'start) ->
+  ('a -> 'a -> 'finish -> 'start) ->
   'a t -> 'start -> 'finish
 
 val rev_map : ('a -> 'b) -> 'a t -> 'b t
