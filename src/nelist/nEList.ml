@@ -43,6 +43,9 @@ let binop op =
   and g x y = Some (op x y) in
   fun atoms -> fold f g atoms None
 
+let find test (h,t) =
+  if test h then Some h else List.find_opt test t
+
 
 (* Creation *)
 

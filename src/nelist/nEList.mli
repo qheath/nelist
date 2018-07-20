@@ -30,6 +30,8 @@ val flatten : 'a t t -> 'a t
 
 val binop : ('a -> 'a -> 'a) -> 'a t -> 'a
 
+val find : ('a -> bool) -> 'a t -> 'a option
+
 (** {6 Destruction} *)
 
 val ends : 'a t -> 'a * 'a
