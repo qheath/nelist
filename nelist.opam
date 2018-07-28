@@ -1,21 +1,21 @@
 opam-version: "2.0"
-version: "0.7"
+version: "0.8"
 maintainer: "Quentin Heath <12143333+qheath@users.noreply.github.com>"
 authors: "Quentin Heath <12143333+qheath@users.noreply.github.com>"
+homepage: "https://github.com/qheath/nelist"
+bug-reports: "https://github.com/qheath/nelist/issues"
+dev-repo: "git://github.com/qheath/nelist.git"
 license: "GPL-3"
-#homepage: ""
-#dev-repo: ""
-#bug-reports: ""
 build: [
-  ["jbuilder" "build" "-p" name "-j" jobs "@install"]
-  ["jbuilder" "build" "-p" name "-j" jobs "@runtest"] {with-test}
-  ["jbuilder" "build" "-p" name "-j" jobs "@doc"] {with-doc}
+  ["dune" "build" "-p" name "-j" jobs "@install"]
+  ["dune" "build" "-p" name "-j" jobs "@runtest"] {with-test}
+  ["dune" "build" "-p" name "-j" jobs "@doc"] {with-doc}
 ]
 
 depends: [
-  "jbuilder" {build}
+  "dune" {build}
 ]
-synopsis: "non-empty lists"
+synopsis: "Non-empty lists"
 description: """
 Simple wrappers around non-empty lists common manipulation functions."""
 #url {
