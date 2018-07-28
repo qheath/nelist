@@ -1,0 +1,5 @@
+(library
+ (name nEList)
+ (public_name nelist)
+ (synopsis "non-empty lists")
+ (modules ("NEList")))
