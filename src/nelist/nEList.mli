@@ -20,9 +20,13 @@ val fold :
   ('a -> 'a -> 'finish -> 'start) ->
   'a t -> 'start -> 'finish
 
+val rev_mapi : (int -> 'a -> 'b) -> 'a t -> 'b t
+
 val rev_map : ('a -> 'b) -> 'a t -> 'b t
 
 val rev : 'a t -> 'a t
+
+val mapi : (int -> 'a -> 'b) -> 'a t -> 'b t
 
 val map : ('a -> 'b) -> 'a t -> 'b t
 

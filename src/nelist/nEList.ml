@@ -18,17 +18,24 @@ let fold f g =
   in
   fun (h,t) seed -> aux (f h seed,h) t
 
-let rev_map f nel =
+let rev_mapi f nel =
   fold
-    (fun h accum -> f h,accum)
-    (fun _ _ (h,t) -> h::t)
-    nel []
+    (fun h (i,accum) -> i+1,(f i h,accum))
+    (fun _ _ (i,(h,t)) -> i,h::t)
+    nel (0,[])
+  |> snd
+
+let rev_map f =
+  rev_mapi (fun _ x -> f x)
 
 let rev (h,t) =
   rev_append t (h,[])
 
+let mapi f nel =
+  rev @@ rev_mapi f nel
+
 let map f nel =
-  rev_map f @@ rev nel
+  mapi (fun _ x -> f x) nel
 
 let flatten =
   let rec aux (hh0,ht0) = function
